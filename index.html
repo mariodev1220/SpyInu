@@ -217,6 +217,8 @@
     .chapter { padding: 72px 0; }
     .chapter + .chapter { border-top: 2px solid var(--ink); }
     #cover { padding: 22px 0 64px; }
+    #cover, #affair, #scenes, #file, #entry { scroll-margin-top: 92px; }
+    body.menu-open { overflow: hidden; }
     .chapter-head {
       display: grid;
       gap: 8px;
@@ -269,6 +271,8 @@
 
     .cover-stack { display: grid; gap: 16px; }
     .frame {
+      display: block;
+      width: 100%;
       background: #0c0908;
       border: 3px solid var(--ink);
       box-shadow: 6px 7px 0 var(--red);
@@ -284,6 +288,7 @@
     }
     .frame-tall {
       display: inline-block;
+      width: auto;
       max-width: 100%;
       box-shadow: 6px 7px 0 var(--ink);
     }
@@ -492,6 +497,7 @@
       border-top: 6px solid var(--red);
       padding: 64px 0 28px;
     }
+    .back .btn { box-shadow: 4px 5px 0 #000; }
     .back-inner { display: grid; gap: 18px; justify-items: start; }
     .epithet {
       font-style: italic;
@@ -602,9 +608,12 @@
       .caption-box { padding: 18px; }
     }
     @media (max-width: 420px) {
+      .header-inner { gap: 8px; }
       .brand-symbol { display: none; }
       .brand img { width: 42px; height: 42px; }
       .brand-name { font-size: 1.35rem; }
+      .header-actions .btn:not(.icon) { padding: 0 10px; }
+      .header-actions .btn .ico { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -721,7 +730,7 @@
             <span class="ca" data-ca>PASTE_CA_HERE</span>
             <button class="btn" type="button" data-copy>Copy</button>
           </div>
-          <p class="whisper">Match every character before you swap. The buy link and the Dexscreener link both read this address.</p>
+          <p class="whisper">Match every character before you swap.</p>
         </div>
       </div>
     </section>
@@ -818,7 +827,7 @@
                   Dexscreener
                 </a>
               </div>
-              <p class="whisper">One address. Change it once and the whole file follows.</p>
+              <p class="whisper">Buy and Dexscreener both leave from this address.</p>
             </div>
           </article>
         </div>
@@ -1014,10 +1023,11 @@
     });
 
     function spy() {
-      const line = window.scrollY + 96;
-      let current = seen[0];
+      const line = window.scrollY + 110;
+      let current = null;
       seen.forEach(function (section) {
-        if (section.offsetTop <= line) current = section;
+        const top = section.getBoundingClientRect().top + window.scrollY;
+        if (top <= line) current = section;
       });
       navLinks.forEach(function (link) {
         if (current && link.getAttribute("href") === "#" + current.id) {
