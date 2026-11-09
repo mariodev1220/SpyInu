@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spy Inu (SI)</title>
+  <meta name="description" content="She never takes the glasses off. Spy Inu is the late-night affair the chip world can't shake: red cheongsam, black trench, secrets in the hallway.">
+  <meta name="theme-color" content="#f3e6d4">
+  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add("js");</script>
+  <style>
+    :root {
+      --paper: #f3e6d4;
+      --slip: #fff8ee;
+      --ink: #1a1210;
+      --red: #8d1a24;
+      --gold: #7a4e22;
+      --muted: #5e4b40;
+      --night: #140e0c;
+      --cream: #f6efe4;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Cormorant Garamond", Palatino, "Palatino Linotype", Georgia, serif;
+      font-weight: 500;
+      font-size: 1.2rem;
+      line-height: 1.45;
+      font-feature-settings: "kern" 1, "liga" 1;
+    }
+    img { max-width: 100%; height: auto; }
+    button, input, textarea, a { font-family: inherit; }
+    p, h1, h2, h3, figure { margin: 0; }
+    a { color: inherit; }
+    :focus-visible {
+      outline: 3px solid var(--red);
+      outline-offset: 3px;
+    }
+
+    .sprite {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+    .ico { width: 22px; height: 22px; display: block; flex: none; }
+    .skip {
+      position: absolute;
+      left: 12px;
+      top: -48px;
+      z-index: 80;
+      background: var(--slip);
+      color: var(--ink);
+      border: 3px solid var(--ink);
+      padding: 8px 12px;
+      text-decoration: none;
+    }
+    .skip:focus { top: 12px; }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin-inline: auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--paper);
+      border-top: 6px solid var(--red);
+      border-bottom: 3px solid var(--ink);
+    }
+    .header-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      margin-right: auto;
+      min-width: 0;
+    }
+    .brand img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border: 2px solid var(--ink);
+      background: #ead8c4;
+      flex: none;
+    }
+    .brand-name {
+      display: block;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 1.7rem;
+      line-height: 0.85;
+      white-space: nowrap;
+    }
+    .brand-symbol {
+      display: block;
+      margin-top: 3px;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .nav-links a {
+      position: relative;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.08rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 0;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    .nav-links a:hover::after,
+    .nav-links a[aria-current="location"]::after { transform: scaleX(1); }
+    .header-actions { display: flex; align-items: center; gap: 8px; flex: none; }
+    .menu-btn { display: none; }
+    .menu {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      background: var(--slip);
+      border-bottom: 3px solid var(--ink);
+      padding: 8px 18px 16px;
+      flex-direction: column;
+    }
+    .menu.open { display: flex; }
+    .menu a {
+      text-decoration: none;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.8rem;
+      padding: 8px 0;
+      border-bottom: 1px solid #e4d3c0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 16px;
+      border: 3px solid var(--ink);
+      border-radius: 0;
+      background: var(--red);
+      color: var(--cream);
+      box-shadow: 4px 5px 0 var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.12rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .btn.ghost {
+      background: transparent;
+      color: var(--ink);
+    }
+    .btn.icon { width: 48px; padding: 0; }
+    .btn.copied { background: var(--ink); color: var(--cream); }
+    .btn.ghost.light,
+    .back .btn.ghost {
+      color: var(--cream);
+      border-color: var(--cream);
+      box-shadow: 4px 5px 0 #000;
+    }
+    @media (hover: hover) {
+      .btn:hover {
+        transform: translate(2px, 3px);
+        box-shadow: 0 0 0 var(--ink);
+      }
+      .btn.ghost:hover { background: var(--ink); color: var(--cream); }
+      .btn.ghost.light:hover,
+      .back .btn.ghost:hover { background: var(--cream); color: var(--ink); }
+      .nav-links a::after { transition: transform 200ms ease; }
+    }
+    .btn:active {
+      transform: translate(2px, 3px);
+      box-shadow: 0 0 0 var(--ink);
+    }
+
+    .chapter { padding: 72px 0; }
+    .chapter + .chapter { border-top: 2px solid var(--ink); }
+    #cover { padding: 22px 0 64px; }
+    .chapter-head {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 28px;
+      max-width: 40rem;
+    }
+    .kicker {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 0.98rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+    .chapter-head .kicker::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 8px;
+      background: var(--red);
+      vertical-align: 1px;
+    }
+    h1, h2, h3 {
+      font-weight: 600;
+      font-style: italic;
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+    }
+    h1 {
+      font-size: clamp(3.6rem, 12vw, 7.6rem);
+      color: var(--red);
+      text-shadow: 3px 3px 0 var(--ink);
+    }
+    h2 { font-size: clamp(2.6rem, 5vw, 4.15rem); }
+    h3 { font-size: 1.9rem; line-height: 1; }
+    .lede {
+      font-style: italic;
+      font-size: 1.4rem;
+      line-height: 1.35;
+      color: var(--muted);
+      max-width: 38rem;
+    }
+    .symbol-line {
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 1rem;
+    }
+
+    .cover-stack { display: grid; gap: 16px; }
+    .frame {
+      background: #0c0908;
+      border: 3px solid var(--ink);
+      box-shadow: 6px 7px 0 var(--red);
+      padding: 8px;
+      line-height: 0;
+    }
+    .frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: #0c0908;
+    }
+    .frame-tall {
+      display: inline-block;
+      max-width: 100%;
+      box-shadow: 6px 7px 0 var(--ink);
+    }
+    .frame-tall img {
+      width: auto;
+      max-width: min(340px, 100%);
+      max-height: 82vh;
+      object-fit: contain;
+    }
+    .caption-box {
+      background: var(--slip);
+      border: 3px solid var(--ink);
+      box-shadow: 6px 7px 0 var(--red);
+      padding: 26px 26px 22px;
+      display: grid;
+      gap: 14px;
+    }
+    .bio {
+      font-style: italic;
+      font-size: clamp(1.3rem, 2vw, 1.65rem);
+      line-height: 1.35;
+      max-width: 40rem;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .ca-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      padding: 8px 8px 8px 14px;
+    }
+    .ca {
+      flex: 1;
+      min-width: 0;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 1.15rem;
+      line-height: 1.25;
+      word-break: break-all;
+      user-select: all;
+    }
+    .whisper {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 1.12rem;
+    }
+
+    .affair {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 32px;
+      align-items: start;
+    }
+    .story {
+      border: 3px solid var(--ink);
+      border-left: 10px solid var(--red);
+      background: var(--slip);
+      box-shadow: 6px 7px 0 var(--ink);
+      padding: 22px 22px 22px 18px;
+      display: grid;
+      gap: 0.9rem;
+      font-style: italic;
+      font-size: 1.38rem;
+      line-height: 1.4;
+    }
+
+    .strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .shot {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: none;
+      color: inherit;
+      text-align: left;
+      cursor: zoom-in;
+      font: inherit;
+    }
+    .shot .frame { box-shadow: 5px 6px 0 var(--ink); }
+    .shot-title { font-style: italic; font-weight: 600; font-size: 1.7rem; line-height: 1; }
+    .shot-text { font-style: italic; color: var(--muted); font-size: 1.15rem; line-height: 1.3; }
+    @media (hover: hover) {
+      .shot:hover .frame { box-shadow: 8px 9px 0 var(--red); }
+    }
+
+    .dossier {
+      display: grid;
+      grid-template-columns: minmax(220px, 360px) minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+    .portrait { display: grid; gap: 12px; justify-items: start; }
+    .portrait .frame { box-shadow: 6px 7px 0 var(--ink); }
+    .aside {
+      font-style: italic;
+      font-size: 1.35rem;
+      max-width: 22rem;
+    }
+    .receipt {
+      background: var(--slip);
+      border: 3px solid var(--ink);
+      box-shadow: 6px 8px 0 var(--ink);
+    }
+    .receipt-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--red);
+      color: var(--cream);
+      padding: 10px 16px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 0.98rem;
+    }
+    .seal {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--cream);
+      color: var(--cream);
+      letter-spacing: 0.08em;
+      font-size: 1.2rem;
+    }
+    .receipt-body { padding: 6px 18px 18px; display: grid; gap: 16px; }
+    .row {
+      display: grid;
+      grid-template-columns: 132px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px dashed #cbb59a;
+    }
+    .row b {
+      font-weight: 700;
+      font-style: normal;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      color: var(--gold);
+    }
+    .row span:last-child {
+      font-style: italic;
+      font-weight: 600;
+      font-size: 1.5rem;
+    }
+    .chain {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .row.contract { grid-template-columns: 1fr; align-items: start; }
+    .row.contract .ca { font-size: 1.2rem; font-style: italic; }
+
+    .steps {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .steps::before {
+      content: "";
+      position: absolute;
+      top: 25px;
+      left: 8%;
+      right: 8%;
+      height: 3px;
+      background: var(--red);
+    }
+    .step { display: grid; gap: 10px; align-content: start; }
+    .step-icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      background: var(--slip);
+      border: 3px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--red);
+      position: relative;
+      z-index: 1;
+    }
+    .step-icon .ico { width: 28px; height: 28px; }
+    .step p { font-style: italic; color: var(--muted); font-size: 1.15rem; }
+    .step .ca {
+      display: block;
+      margin-top: 6px;
+      font-style: normal;
+      color: var(--ink);
+      font-size: 1rem;
+    }
+    .entry-actions { margin-top: 26px; }
+
+    .back {
+      background: var(--night);
+      color: var(--cream);
+      border-top: 6px solid var(--red);
+      padding: 64px 0 28px;
+    }
+    .back-inner { display: grid; gap: 18px; justify-items: start; }
+    .epithet {
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(2.4rem, 5.4vw, 4rem);
+      line-height: 0.92;
+      max-width: 9em;
+    }
+    .back .ca-row {
+      background: transparent;
+      border-color: var(--cream);
+      color: var(--cream);
+      width: min(100%, 720px);
+    }
+    .fine {
+      font-style: italic;
+      color: #d9c7b4;
+      font-size: 1.08rem;
+      max-width: 40rem;
+    }
+    .signoff {
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      color: #e6cb96;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 70;
+      left: 50%;
+      bottom: 16px;
+      transform: translateX(-50%) translateY(8px);
+      background: var(--slip);
+      color: var(--ink);
+      border: 3px solid var(--ink);
+      box-shadow: 4px 5px 0 var(--red);
+      padding: 10px 16px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    #viewer {
+      border: 3px solid var(--cream);
+      border-radius: 0;
+      background: var(--night);
+      color: var(--cream);
+      padding: 16px;
+      max-width: calc(100vw - 24px);
+      box-shadow: 8px 10px 0 var(--red);
+    }
+    #viewer::backdrop { background: rgba(16, 10, 8, 0.84); }
+    #viewer img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: min(92vw, 1000px);
+      max-height: 74vh;
+      margin-inline: auto;
+      object-fit: contain;
+      background: #000;
+    }
+    #viewer-cap {
+      margin-top: 12px;
+      font-style: italic;
+      font-size: 1.6rem;
+      text-align: center;
+    }
+    .viewer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 500ms ease, transform 500ms ease;
+    }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 980px) {
+      .affair, .dossier { grid-template-columns: 1fr; }
+      .affair { justify-items: center; }
+      .story, .portrait { width: min(100%, 640px); }
+      .portrait { justify-items: center; margin-inline: auto; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .steps::before { display: none; }
+    }
+    @media (max-width: 860px) {
+      .nav-links, .header-x { display: none; }
+      .menu-btn { display: inline-flex; }
+    }
+    @media (max-width: 760px) {
+      .strip { grid-template-columns: 1fr; }
+      .chapter { padding: 52px 0; }
+    }
+    @media (max-width: 640px) {
+      .steps { grid-template-columns: 1fr; }
+      .ca-row { flex-direction: column; align-items: stretch; }
+      .row { grid-template-columns: 1fr; gap: 2px; }
+      .caption-box { padding: 18px; }
+    }
+    @media (max-width: 420px) {
+      .brand-symbol { display: none; }
+      .brand img { width: 42px; height: 42px; }
+      .brand-name { font-size: 1.35rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#cover">Skip to the story</a>
+  <svg class="sprite" aria-hidden="true">
+    <symbol id="i-pump" viewBox="0 0 200 200">
+      <path d="M21.8855 184.247C-2.01603 162.076 -3.41853 124.726 18.753 100.824L94.7609 18.8855C116.932 -5.01605 154.282 -6.41855 178.184 15.7529C202.085 37.9244 203.488 75.274 181.316 99.1756L105.308 181.115C83.1367 205.016 45.7871 206.419 21.8855 184.247Z" fill="#fff8ee"/>
+      <path fill-rule="evenodd" d="M18.753 100.824C-3.41853 124.726 -2.01603 162.076 21.8855 184.247C45.7871 206.419 83.1367 205.016 105.308 181.115L145.81 137.452L59.2549 57.1621L18.753 100.824ZM40.6908 123.847C41.4209 122.946 41.2828 121.625 40.3824 120.895C39.482 120.165 38.1603 120.303 37.4302 121.203L34.9463 124.267C34.2162 125.167 34.3543 126.489 35.2547 127.219C36.1551 127.949 37.4768 127.811 38.2068 126.91L40.6908 123.847ZM34.5525 135.781C34.7653 134.641 34.014 133.545 32.8745 133.332C31.735 133.12 30.6388 133.871 30.4261 135.01C29.2814 141.142 29.7013 147.239 31.4916 152.718C31.8516 153.82 33.0367 154.421 34.1385 154.061C35.2404 153.701 35.8417 152.516 35.4816 151.414C33.9159 146.623 33.5335 141.24 34.5525 135.781ZM39.6257 160.27C38.8184 159.438 37.4897 159.418 36.6578 160.225C35.8259 161.032 35.8059 162.361 36.6131 163.193L40.0892 166.775C40.8964 167.607 42.2252 167.627 43.0571 166.82C43.889 166.013 43.909 164.684 43.1018 163.852L39.6257 160.27Z" fill="#e6cb96"/>
+      <path fill-rule="evenodd" d="M3.06623 138.152C5.76813 147.035 10.7861 155.343 18.084 162.112C40.0735 182.51 74.4351 181.22 94.8329 159.23L161.563 87.2934C181.961 65.304 180.67 30.9424 158.681 10.5446C153.808 6.02469 148.328 2.56968 142.527 0.168847C155.378 1.14043 168.001 6.30744 178.184 15.7529C202.085 37.9244 203.488 75.274 181.316 99.1756L105.308 181.115C83.1367 205.016 45.7871 206.419 21.8855 184.247C8.6076 171.93 2.27306 154.929 3.06623 138.152Z" fill="#1a1210" fill-opacity="0.35"/>
+      <path fill-rule="evenodd" d="M140.341 130.232L174.776 93.1092C193.598 72.8194 192.407 41.1138 172.117 22.2927C151.827 3.47151 120.122 4.66206 101.301 24.9518L66.8651 62.0744L140.341 130.232ZM181.316 99.1756C203.488 75.274 202.085 37.9244 178.184 15.7529C154.282 -6.41855 116.932 -5.01605 94.7609 18.8855L54.259 62.5478L140.814 142.838L181.316 99.1756Z" fill="#1a1210"/>
+      <path fill-rule="evenodd" d="M25.2927 106.891L60.7988 68.6141L54.259 62.5478L18.753 100.824C-3.41853 124.726 -2.01603 162.076 21.8855 184.247C45.7871 206.419 83.1367 205.016 105.308 181.115L140.814 142.838L134.275 136.771L98.7685 175.048C79.9473 195.338 48.2417 196.528 27.9519 177.707C7.66214 158.886 6.47158 127.181 25.2927 106.891Z" fill="#1a1210"/>
+    </symbol>
+    <symbol id="i-dex" viewBox="0 0 48 48">
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="M12.951 10.765c-4.384 7.074.244 15.697-5.366 25.358l4.657-3.436v0l3.196 5.208l3.23-3.12L24 43.492l5.332-8.715l3.23 3.12l3.196-5.21l4.657 3.437c-5.61-9.66-.982-18.284-5.366-25.358"/>
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="m19.89 23.502l-3.424 2.037c4.622.794 6.467 7.03 7.534 12.389c1.067-5.36 2.912-11.595 7.534-12.389l-3.423-2.037c.436-3.3-1.91-6.552-4.111-6.552s-4.547 3.253-4.11 6.552"/>
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="M26.522 17.69c4.604-2.337 9.597-6.354 11.318-12.439c-1.07 1.375-2.66 2.767-4.518 3.283a15 15 0 0 0-.685-.66C29.536 5.057 27.25 4.508 24 4.508s-5.536.55-8.637 3.364q-.36.329-.685.661c-1.858-.516-3.449-1.908-4.518-3.283c1.72 6.085 6.714 10.102 11.318 12.44"/>
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="M16.049 14.43c-1.098.875-1.352 2.643-.558 3.899c.928 1.47 3.689 2.26 5.117.995m11.343-4.894c1.098.875 1.352 2.643.558 3.899c-.928 1.47-3.689 2.26-5.117.995"/>
+    </symbol>
+    <symbol id="i-sol" viewBox="0 0 512 512">
+      <g transform="translate(56.85 97.95)" fill="currentColor">
+        <path d="M64.6 232.3a12.9 12.9 0 0 1 9.1-3.8h317.2c5.7 0 8.6 6.9 4.6 10.9l-62.7 62.7a12.9 12.9 0 0 1-9.1 3.8H6.5c-5.7 0-8.6-6.9-4.6-10.9Z"/>
+        <path d="M64.6 3.8A12.9 12.9 0 0 1 73.7 0h317.2c5.7 0 8.6 6.9 4.6 10.9l-62.7 62.7a12.9 12.9 0 0 1-9.1 3.8H6.5c-5.7 0-8.6-6.9-4.6-10.9Z"/>
+        <path d="M332.8 117.3a12.9 12.9 0 0 0-9.1-3.8H6.5c-5.7 0-8.6 6.9-4.6 10.9l62.7 62.7a12.9 12.9 0 0 0 9.1 3.8h317.2c5.7 0 8.6-6.9 4.6-10.9Z"/>
+      </g>
+    </symbol>
+    <symbol id="i-wallet" viewBox="0 0 512 512">
+      <g fill="none" stroke="currentColor" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M104 164v-24c0-19 13-35 32-39l252-53v116"/>
+        <path d="M428 208v-12c0-18-14-32-32-32H104c-22 0-40 18-40 40v208c0 22 18 40 40 40h292c18 0 32-14 32-32v-44"/>
+        <path d="M348 240h100v104H348c-29 0-52-23-52-52s23-52 52-52Z"/>
+      </g>
+      <circle cx="352" cy="292" r="13" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M14.7 10.3 22.4 2h-1.8l-6.7 7.2L8.1 2H2l8.1 11.1L2 22h1.8l7.1-7.6L15.9 22H22l-7.3-11.7Zm-2.5 2.7-.8-1.1L4.6 3.3h2.8l5.2 7 .8 1.1 6.8 9.3h-2.8l-5.2-7.1Z"/>
+    </symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24">
+      <rect x="8" y="7" width="11" height="14" fill="none" stroke="currentColor" stroke-width="2"/>
+      <rect x="5" y="3" width="11" height="14" fill="none" stroke="currentColor" stroke-width="2"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#cover">
+        <img src="logo.png" width="512" height="512" alt="Spy Inu in sunglasses, a red cheongsam, and a black trench">
+        <span>
+          <span class="brand-name">Spy Inu</span>
+          <span class="brand-symbol">SI</span>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Story">
+        <a href="#affair">Affair</a>
+        <a href="#scenes">Scenes</a>
+        <a href="#file">File</a>
+        <a href="#entry">Entry</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn icon ghost header-x" href="https://x.com/thespyinu" target="_blank" rel="noopener noreferrer" aria-label="Spy Inu on X">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x" width="100%" height="100%"/></svg>
+        </a>
+        <a class="btn" data-buy href="https://swap.pump.fun/" target="_blank" rel="noopener noreferrer">
+          <svg class="ico" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-pump" width="100%" height="100%"/></svg>
+          Buy
+        </a>
+        <button class="menu-btn btn icon ghost" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open the menu">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="menu" class="menu" aria-label="Story menu">
+      <a href="#affair">Affair</a>
+      <a href="#scenes">Scenes</a>
+      <a href="#file">File</a>
+      <a href="#entry">Entry</a>
+      <a href="https://x.com/thespyinu" target="_blank" rel="noopener noreferrer">X</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="cover">
+      <div class="wrap cover-stack">
+        <figure class="frame">
+          <img src="banner.png" width="1500" height="500" fetchpriority="high" alt="Spy Inu in a dark room before a wall of windows and a lit city">
+        </figure>
+        <div class="caption-box">
+          <p class="kicker">Classified</p>
+          <h1>Spy Inu</h1>
+          <p class="symbol-line">SI · Solana</p>
+          <p class="bio">She never takes the glasses off. Spy Inu is the late-night affair the chip world can't shake: red cheongsam, black trench, secrets in the hallway.</p>
+          <div class="actions">
+            <a class="btn" data-buy href="https://swap.pump.fun/" target="_blank" rel="noopener noreferrer">
+              <svg class="ico" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-pump" width="100%" height="100%"/></svg>
+              Buy SI
+            </a>
+            <a class="btn ghost" data-chart href="https://dexscreener.com/solana" target="_blank" rel="noopener noreferrer">
+              <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><use href="#i-dex" width="100%" height="100%"/></svg>
+              Dexscreener
+            </a>
+            <a class="btn icon ghost" href="https://x.com/thespyinu" target="_blank" rel="noopener noreferrer" aria-label="Spy Inu on X">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x" width="100%" height="100%"/></svg>
+            </a>
+          </div>
+          <div class="ca-row">
+            <span class="ca" data-ca>PASTE_CA_HERE</span>
+            <button class="btn" type="button" data-copy>Copy</button>
+          </div>
+          <p class="whisper">Match every character before you swap. The buy link and the Dexscreener link both read this address.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="affair" class="chapter">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">The affair</p>
+          <h2>Red cheongsam, black trench</h2>
+        </div>
+        <div class="affair reveal">
+          <figure class="frame frame-tall">
+            <img src="main.png" width="500" height="1492" loading="lazy" alt="Full-length Spy Inu in a red dragon cheongsam, black trench coat, and black heels">
+          </figure>
+          <div class="story">
+            <p>Spy Inu is a community meme project starring a glamorous Shiba in dark sunglasses, gold hairpins, a red cheongsam and a black trench coat. The story plays on the headlines around NVIDIA CEO Jensen Huang and a rumored affair with an alleged spy.</p>
+            <p>From rainy backseats to penthouse windows and half-open hotel doors, she moves like every whisper was written for her. Charming, unreadable, always one step ahead.</p>
+            <p>For anyone who likes a scandal with style: the glasses stay on, and the rest is classified.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenes" class="chapter">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">The sightings</p>
+          <h2>Where the night kept her</h2>
+          <p class="lede">Rainy backseats, penthouse windows, and half-open hotel doors.</p>
+        </div>
+        <div class="strip">
+          <button class="shot reveal" type="button" aria-label="View the hallway still">
+            <span class="frame">
+              <img src="1.jpg" width="500" height="375" loading="lazy" alt="Spy Inu holding a hotel door open in a lamplit hallway">
+            </span>
+            <span class="shot-title">The hallway</span>
+            <span class="shot-text">A half-open door. The secret does not knock.</span>
+          </button>
+          <button class="shot reveal" type="button" aria-label="View the backseat still">
+            <span class="frame">
+              <img src="2.jpg" width="500" height="375" loading="lazy" alt="Spy Inu in the backseat of a car while rain covers the windows">
+            </span>
+            <span class="shot-title">The backseat</span>
+            <span class="shot-text">Rain on the glass. The city slides past unbothered.</span>
+          </button>
+          <button class="shot reveal" type="button" aria-label="View the penthouse still">
+            <span class="frame">
+              <img src="3.jpg" width="500" height="375" loading="lazy" alt="Spy Inu in a penthouse at night, with the city and a glass of champagne behind her">
+            </span>
+            <span class="shot-title">The penthouse</span>
+            <span class="shot-text">One window, one glass, nothing written down.</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="file" class="chapter">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">The file</p>
+          <h2>One contract</h2>
+          <p class="lede">Name, symbol, and chain. Buy and Dexscreener stay on the same address.</p>
+        </div>
+        <div class="dossier reveal">
+          <div class="portrait">
+            <figure class="frame">
+              <img src="logo.png" width="512" height="512" loading="lazy" alt="Portrait of Spy Inu, glasses on, gold hairpins in a dark updo">
+            </figure>
+            <p class="aside">She never takes the glasses off.</p>
+          </div>
+          <article class="receipt">
+            <div class="receipt-top">
+              <span>Case file</span>
+              <span class="seal">SI</span>
+            </div>
+            <div class="receipt-body">
+              <div class="row"><b>Name</b><span>Spy Inu</span></div>
+              <div class="row"><b>Symbol</b><span>SI</span></div>
+              <div class="row">
+                <b>Chain</b>
+                <span class="chain">
+                  <svg class="ico" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-sol" width="100%" height="100%"/></svg>
+                  Solana
+                </span>
+              </div>
+              <div class="row contract">
+                <b>Contract</b>
+                <span class="ca" data-ca>PASTE_CA_HERE</span>
+              </div>
+              <div class="actions">
+                <button class="btn" type="button" data-copy>Copy</button>
+                <a class="btn ghost" data-chart href="https://dexscreener.com/solana" target="_blank" rel="noopener noreferrer">
+                  <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><use href="#i-dex" width="100%" height="100%"/></svg>
+                  Dexscreener
+                </a>
+              </div>
+              <p class="whisper">One address. Change it once and the whole file follows.</p>
+            </div>
+          </article>
+        </div>
+        <noscript><p class="whisper">Turn on JavaScript to paint the contract into the buy and Dexscreener links.</p></noscript>
+      </div>
+    </section>
+
+    <section id="entry" class="chapter">
+      <div class="wrap">
+        <div class="chapter-head">
+          <p class="kicker">The entry</p>
+          <h2>How to get in</h2>
+          <p class="lede">Four moves. The contract stays the one on this page.</p>
+        </div>
+        <div class="steps reveal">
+          <article class="step">
+            <span class="step-icon">
+              <svg class="ico" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-wallet" width="100%" height="100%"/></svg>
+            </span>
+            <h3>Open a wallet</h3>
+            <p>Use a Solana wallet you already control.</p>
+          </article>
+          <article class="step">
+            <span class="step-icon">
+              <svg class="ico" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-sol" width="100%" height="100%"/></svg>
+            </span>
+            <h3>Bring SOL</h3>
+            <p>The swap is paid in SOL, with a little left for the fee.</p>
+          </article>
+          <article class="step">
+            <span class="step-icon">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy" width="100%" height="100%"/></svg>
+            </span>
+            <h3>Match the contract</h3>
+            <p>Copy the address and compare every character.</p>
+            <span class="ca" data-ca>PASTE_CA_HERE</span>
+          </article>
+          <article class="step">
+            <span class="step-icon">
+              <svg class="ico" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-pump" width="100%" height="100%"/></svg>
+            </span>
+            <h3>Buy on PumpSwap</h3>
+            <p>The buy button uses that same contract. So does Dexscreener.</p>
+          </article>
+        </div>
+        <div class="actions entry-actions">
+          <a class="btn" data-buy href="https://swap.pump.fun/" target="_blank" rel="noopener noreferrer">
+            <svg class="ico" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-pump" width="100%" height="100%"/></svg>
+            Buy on PumpSwap
+          </a>
+          <a class="btn ghost" data-chart href="https://dexscreener.com/solana" target="_blank" rel="noopener noreferrer">
+            <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><use href="#i-dex" width="100%" height="100%"/></svg>
+            Dexscreener
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="back">
+    <div class="wrap back-inner">
+      <p class="signoff">Spy Inu · SI · Solana</p>
+      <p class="epithet">The glasses stay on, and the rest is classified.</p>
+      <div class="actions">
+        <a class="btn" data-buy href="https://swap.pump.fun/" target="_blank" rel="noopener noreferrer">
+          <svg class="ico" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-pump" width="100%" height="100%"/></svg>
+          Buy SI
+        </a>
+        <a class="btn ghost" data-chart href="https://dexscreener.com/solana" target="_blank" rel="noopener noreferrer">
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><use href="#i-dex" width="100%" height="100%"/></svg>
+          Dexscreener
+        </a>
+        <a class="btn icon ghost" href="https://x.com/thespyinu" target="_blank" rel="noopener noreferrer" aria-label="Spy Inu on X">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x" width="100%" height="100%"/></svg>
+        </a>
+      </div>
+      <div class="ca-row">
+        <span class="ca" data-ca>PASTE_CA_HERE</span>
+        <button class="btn" type="button" data-copy>Copy</button>
+      </div>
+      <p class="fine">Spy Inu is a community meme on Solana. The story is a rumor with a wardrobe. Nothing on this page is financial advice.</p>
+    </div>
+  </footer>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="viewer" aria-labelledby="viewer-cap">
+    <img id="viewer-img" alt="">
+    <p id="viewer-cap"></p>
+    <div class="viewer-nav">
+      <button class="btn ghost light" type="button" id="viewer-prev">Previous</button>
+      <button class="btn ghost light" type="button" id="viewer-close">Close</button>
+      <button class="btn ghost light" type="button" id="viewer-next">Next</button>
+    </div>
+  </dialog>
+
+  <script>
+    /* Patch the contract here once.
+       PumpSwap buy links and the Dexscreener link both use CA. */
+    const CA = "PASTE_CA_HERE";
+
+    const mint = CA.trim();
+    const SOL = "So11111111111111111111111111111111111111112";
+    const buyUrl = "https://swap.pump.fun/?input=" + SOL + "&output=" + encodeURIComponent(mint);
+    const dexUrl = "https://dexscreener.com/solana/" + encodeURIComponent(mint);
+
+    document.querySelectorAll("[data-ca]").forEach(function (node) {
+      node.textContent = mint;
+    });
+    document.querySelectorAll("[data-buy]").forEach(function (node) {
+      node.href = buyUrl;
+    });
+    document.querySelectorAll("[data-chart]").forEach(function (node) {
+      node.href = dexUrl;
+    });
+
+    const toast = document.querySelector(".toast");
+    let toastTimer = 0;
+    let copyTimer = 0;
+
+    function fallbackCopy(value) {
+      const area = document.createElement("textarea");
+      area.value = value;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.left = "-9999px";
+      document.body.appendChild(area);
+      area.select();
+      let ok = false;
+      try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+      document.body.removeChild(area);
+      return ok;
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(function () {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
+    async function copyCa(button) {
+      let ok = false;
+      try {
+        await navigator.clipboard.writeText(mint);
+        ok = true;
+      } catch (err) {
+        ok = fallbackCopy(mint);
+      }
+      showToast(ok ? "Contract copied." : "Select the address and copy it by hand.");
+      if (!ok || !button) return;
+      button.classList.add("copied");
+      window.clearTimeout(copyTimer);
+      copyTimer = window.setTimeout(function () {
+        button.classList.remove("copied");
+      }, 1600);
+    }
+
+    document.querySelectorAll("[data-copy]").forEach(function (button) {
+      button.addEventListener("click", function () { copyCa(button); });
+    });
+
+    const menuBtn = document.querySelector(".menu-btn");
+    const menu = document.querySelector(".menu");
+    function closeMenu() {
+      menu.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.setAttribute("aria-label", "Open the menu");
+      document.body.classList.remove("menu-open");
+    }
+    menuBtn.addEventListener("click", function () {
+      const open = menu.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      menuBtn.setAttribute("aria-label", open ? "Close the menu" : "Open the menu");
+      document.body.classList.toggle("menu-open", open);
+    });
+    menu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 860) closeMenu();
+    });
+
+    const navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-links a, .menu a[href^='#']"));
+    const sections = navLinks.map(function (link) {
+      return document.querySelector(link.getAttribute("href"));
+    }).filter(Boolean);
+    const seen = [];
+    sections.forEach(function (section) {
+      if (seen.indexOf(section) === -1) seen.push(section);
+    });
+
+    function spy() {
+      const line = window.scrollY + 96;
+      let current = seen[0];
+      seen.forEach(function (section) {
+        if (section.offsetTop <= line) current = section;
+      });
+      navLinks.forEach(function (link) {
+        if (current && link.getAttribute("href") === "#" + current.id) {
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    }
+    let spyFrame = 0;
+    window.addEventListener("scroll", function () {
+      if (spyFrame) return;
+      spyFrame = window.requestAnimationFrame(function () {
+        spyFrame = 0;
+        spy();
+      });
+    }, { passive: true });
+    spy();
+
+    const shots = Array.prototype.slice.call(document.querySelectorAll(".shot"));
+    const viewer = document.getElementById("viewer");
+    const viewerImg = document.getElementById("viewer-img");
+    const viewerCap = document.getElementById("viewer-cap");
+    let shotIndex = 0;
+
+    function showShot(index) {
+      shotIndex = (index + shots.length) % shots.length;
+      const source = shots[shotIndex].querySelector("img");
+      const title = shots[shotIndex].querySelector(".shot-title").textContent;
+      viewerImg.src = source.getAttribute("src");
+      viewerImg.alt = source.getAttribute("alt") || title;
+      viewerCap.textContent = title;
+    }
+
+    shots.forEach(function (shot, index) {
+      shot.addEventListener("click", function () {
+        showShot(index);
+        viewer.showModal();
+      });
+    });
+    document.getElementById("viewer-prev").addEventListener("click", function () { showShot(shotIndex - 1); });
+    document.getElementById("viewer-next").addEventListener("click", function () { showShot(shotIndex + 1); });
+    document.getElementById("viewer-close").addEventListener("click", function () { viewer.close(); });
+    viewer.addEventListener("click", function (event) {
+      if (event.target === viewer) viewer.close();
+    });
+
+    let touchX = null;
+    viewer.addEventListener("touchstart", function (event) {
+      touchX = event.changedTouches[0].clientX;
+    }, { passive: true });
+    viewer.addEventListener("touchend", function (event) {
+      if (touchX == null) return;
+      const dx = event.changedTouches[0].clientX - touchX;
+      touchX = null;
+      if (Math.abs(dx) < 50) return;
+      showShot(shotIndex + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeMenu();
+      if (!viewer.open) return;
+      if (event.key === "ArrowRight") showShot(shotIndex + 1);
+      if (event.key === "ArrowLeft") showShot(shotIndex - 1);
+    });
+
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach(function (node) { io.observe(node); });
+    } else {
+      document.querySelectorAll(".reveal").forEach(function (node) { node.classList.add("in"); });
+    }
+  </script>
+</body>
+</html>
