@@ -5,80 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Spy Inu (SI)</title>
   <meta name="description" content="She never takes the glasses off. Spy Inu is the late-night affair the chip world can't shake: red cheongsam, black trench, secrets in the hallway.">
-  <meta name="theme-color" content="#f3e6d4">
+  <meta name="theme-color" content="#14080e">
   <link rel="icon" href="logo.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script>document.documentElement.classList.add("js");</script>
   <style>
     :root {
-      --paper: #f3e6d4;
-      --slip: #fff8ee;
-      --ink: #1a1210;
-      --red: #8d1a24;
-      --gold: #7a4e22;
-      --muted: #5e4b40;
-      --night: #140e0c;
-      --cream: #f6efe4;
+      --night: #12080c;
+      --ink: #090609;
+      --red: #d0122c;
+      --red-deep: #8d1020;
+      --cream: #faf3e3;
+      --gold: #e6cb96;
+      --muted: #8d7368;
+      --paper: #fff6ea;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: "Cormorant Garamond", Palatino, "Palatino Linotype", Georgia, serif;
-      font-weight: 500;
+      background: var(--night);
+      color: var(--cream);
+      font-family: Oswald, "Arial Narrow", Impact, sans-serif;
+      font-weight: 400;
       font-size: 1.2rem;
       line-height: 1.45;
-      font-feature-settings: "kern" 1, "liga" 1;
+      letter-spacing: 0.01em;
+      padding-top: 92px;
     }
     img { max-width: 100%; height: auto; }
     button, input, textarea, a { font-family: inherit; }
     p, h1, h2, h3, figure { margin: 0; }
     a { color: inherit; }
-    :focus-visible {
-      outline: 3px solid var(--red);
-      outline-offset: 3px;
-    }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    ::selection { background: var(--red); color: var(--cream); }
 
-    .sprite {
-      position: absolute;
-      width: 0;
-      height: 0;
-      overflow: hidden;
-    }
+    .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
     .ico { width: 22px; height: 22px; display: block; flex: none; }
     .skip {
       position: absolute;
       left: 12px;
       top: -48px;
       z-index: 80;
-      background: var(--slip);
+      background: var(--cream);
       color: var(--ink);
-      border: 3px solid var(--ink);
       padding: 8px 12px;
       text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
     .skip:focus { top: 12px; }
-
-    .wrap {
-      width: min(1120px, calc(100% - 32px));
-      margin-inline: auto;
-    }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+    #cover, #affair, #entry, #file, #scenes { scroll-margin-top: 108px; }
+    body.menu-open { overflow: hidden; }
 
     .site-header {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 40;
-      background: var(--paper);
-      border-top: 6px solid var(--red);
-      border-bottom: 3px solid var(--ink);
+      background: linear-gradient(90deg, #14080e 0%, #6e1428 50%, #2a140c 100%);
+      border-bottom: 4px solid var(--ink);
     }
     .header-inner {
-      min-height: 78px;
+      min-height: 88px;
       display: flex;
       align-items: center;
       gap: 18px;
@@ -87,49 +82,46 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      text-decoration: none;
       margin-right: auto;
       min-width: 0;
+      text-decoration: none;
     }
     .brand img {
-      width: 52px;
-      height: 52px;
+      width: 58px;
+      height: 58px;
       object-fit: contain;
+      background: #e7d3bc;
       border: 2px solid var(--ink);
-      background: #ead8c4;
+      border-radius: 0.4rem;
       flex: none;
     }
     .brand-name {
       display: block;
-      font-style: italic;
       font-weight: 700;
-      font-size: 1.7rem;
-      line-height: 0.85;
+      font-size: 1.55rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 0.9;
       white-space: nowrap;
     }
     .brand-symbol {
       display: block;
       margin-top: 3px;
-      font-style: normal;
-      font-weight: 700;
-      font-size: 0.82rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--red);
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
     }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
     .nav-links a {
       position: relative;
       text-decoration: none;
-      font-weight: 700;
-      font-size: 1.08rem;
-      letter-spacing: 0.08em;
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 6px 0;
+      padding: 8px 0;
+      color: var(--cream);
     }
     .nav-links a::after {
       content: "";
@@ -138,10 +130,12 @@
       bottom: 0;
       width: 100%;
       height: 2px;
-      background: var(--red);
+      background: #fff;
       transform: scaleX(0);
       transform-origin: left;
     }
+    .nav-links a:hover,
+    .nav-links a[aria-current="location"] { color: #fff; }
     .nav-links a:hover::after,
     .nav-links a[aria-current="location"]::after { transform: scaleX(1); }
     .header-actions { display: flex; align-items: center; gap: 8px; flex: none; }
@@ -152,19 +146,20 @@
       left: 0;
       right: 0;
       top: 100%;
-      background: var(--slip);
-      border-bottom: 3px solid var(--ink);
-      padding: 8px 18px 16px;
+      background: #1a0a12;
+      border-bottom: 4px solid var(--ink);
+      padding: 6px 20px 16px;
       flex-direction: column;
     }
     .menu.open { display: flex; }
     .menu a {
       text-decoration: none;
-      font-style: italic;
       font-weight: 600;
-      font-size: 1.8rem;
-      padding: 8px 0;
-      border-bottom: 1px solid #e4d3c0;
+      font-size: 1.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(250, 243, 227, 0.18);
     }
 
     .btn {
@@ -172,15 +167,15 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      min-height: 48px;
-      padding: 0 16px;
+      min-height: 52px;
+      padding: 0 18px;
       border: 3px solid var(--ink);
-      border-radius: 0;
-      background: var(--red);
+      border-radius: 0.55rem;
+      background: linear-gradient(180deg, #ff4b5c, #b10e24);
       color: var(--cream);
-      box-shadow: 4px 5px 0 var(--ink);
+      box-shadow: 3px 4px 0 var(--ink);
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 600;
       font-size: 1.12rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -188,343 +183,337 @@
       cursor: pointer;
     }
     .btn.ghost {
-      background: transparent;
-      color: var(--ink);
-    }
-    .btn.icon { width: 48px; padding: 0; }
-    .btn.copied { background: var(--ink); color: var(--cream); }
-    .btn.ghost.light,
-    .back .btn.ghost {
+      background: var(--ink);
       color: var(--cream);
-      border-color: var(--cream);
-      box-shadow: 4px 5px 0 #000;
+      box-shadow: 3px 4px 0 var(--red-deep);
     }
+    .btn.icon { width: 52px; padding: 0; }
+    .btn.copied { background: var(--ink); color: var(--gold); }
+    .btn:active { transform: translate(2px, 3px); box-shadow: 0 0 0 var(--ink); }
     @media (hover: hover) {
-      .btn:hover {
-        transform: translate(2px, 3px);
-        box-shadow: 0 0 0 var(--ink);
-      }
-      .btn.ghost:hover { background: var(--ink); color: var(--cream); }
-      .btn.ghost.light:hover,
-      .back .btn.ghost:hover { background: var(--cream); color: var(--ink); }
-      .nav-links a::after { transition: transform 200ms ease; }
-    }
-    .btn:active {
-      transform: translate(2px, 3px);
-      box-shadow: 0 0 0 var(--ink);
+      .btn:hover { transform: translate(2px, 3px); box-shadow: 0 0 0 var(--ink); }
+      .nav-links a::after { transition: transform 180ms ease; }
+      .shot:hover { transform: translateY(-8px); box-shadow: 8px 12px 0 var(--red); }
     }
 
-    .chapter { padding: 72px 0; }
-    .chapter + .chapter { border-top: 2px solid var(--ink); }
-    #cover { padding: 22px 0 64px; }
-    #cover, #affair, #scenes, #file, #entry { scroll-margin-top: 92px; }
-    body.menu-open { overflow: hidden; }
-    .chapter-head {
-      display: grid;
-      gap: 8px;
-      margin-bottom: 28px;
-      max-width: 40rem;
-    }
     .kicker {
-      font-style: normal;
-      font-weight: 700;
-      font-size: 0.98rem;
-      letter-spacing: 0.2em;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--red);
-    }
-    .chapter-head .kicker::before {
-      content: "";
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      margin-right: 8px;
-      background: var(--red);
-      vertical-align: 1px;
+      color: #ff6070;
     }
     h1, h2, h3 {
-      font-weight: 600;
-      font-style: italic;
-      letter-spacing: -0.02em;
-      line-height: 0.9;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 0.88;
+      text-transform: uppercase;
     }
     h1 {
-      font-size: clamp(3.6rem, 12vw, 7.6rem);
-      color: var(--red);
-      text-shadow: 3px 3px 0 var(--ink);
+      font-size: clamp(4.4rem, 15vw, 9rem);
+      color: var(--cream);
+      text-shadow: 5px 6px 0 var(--red);
     }
-    h2 { font-size: clamp(2.6rem, 5vw, 4.15rem); }
-    h3 { font-size: 1.9rem; line-height: 1; }
-    .lede {
-      font-style: italic;
-      font-size: 1.4rem;
-      line-height: 1.35;
-      color: var(--muted);
-      max-width: 38rem;
+    h2 {
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      text-shadow: 3px 4px 0 var(--ink);
     }
-    .symbol-line {
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-size: 1rem;
-    }
-
-    .cover-stack { display: grid; gap: 16px; }
-    .frame {
-      display: block;
-      width: 100%;
-      background: #0c0908;
-      border: 3px solid var(--ink);
-      box-shadow: 6px 7px 0 var(--red);
-      padding: 8px;
-      line-height: 0;
-    }
-    .frame img {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      background: #0c0908;
-    }
-    .frame-tall {
-      display: inline-block;
-      width: auto;
-      max-width: 100%;
-      box-shadow: 6px 7px 0 var(--ink);
-    }
-    .frame-tall img {
-      width: auto;
-      max-width: min(340px, 100%);
-      max-height: 82vh;
-      object-fit: contain;
-    }
-    .caption-box {
-      background: var(--slip);
-      border: 3px solid var(--ink);
-      box-shadow: 6px 7px 0 var(--red);
-      padding: 26px 26px 22px;
-      display: grid;
-      gap: 14px;
-    }
-    .bio {
-      font-style: italic;
-      font-size: clamp(1.3rem, 2vw, 1.65rem);
-      line-height: 1.35;
-      max-width: 40rem;
-    }
+    h3 { font-size: 1.55rem; line-height: 1; text-shadow: none; }
+    .lede { font-size: 1.25rem; max-width: 36rem; color: #ffd5dc; }
     .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
     .ca-row {
       display: flex;
       align-items: center;
       gap: 12px;
-      border: 2px solid var(--ink);
-      background: var(--paper);
+      width: min(100%, 760px);
+      background: var(--cream);
+      color: var(--ink);
+      border: 3px solid var(--ink);
+      border-radius: 0.55rem;
+      box-shadow: 3px 4px 0 var(--red);
       padding: 8px 8px 8px 14px;
     }
     .ca {
       flex: 1;
       min-width: 0;
-      font-family: inherit;
-      font-weight: 600;
-      font-size: 1.15rem;
+      font-weight: 500;
+      font-size: 1.05rem;
       line-height: 1.25;
+      letter-spacing: 0.03em;
       word-break: break-all;
       user-select: all;
     }
-    .whisper {
-      font-style: italic;
-      color: var(--muted);
-      font-size: 1.12rem;
+    .whisper { color: var(--muted); font-size: 1.05rem; }
+
+    .hero-plate {
+      background: #050304;
+      border-bottom: 8px solid var(--red);
+    }
+    .hero-plate img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: #050304;
+    }
+    .hero-sheet { padding: 36px 0 72px; text-align: center; }
+    .hero-sheet .bio,
+    .hero-sheet .ca-row,
+    .hero-sheet .whisper { margin-inline: auto; }
+    .hero-sheet .actions { justify-content: center; }
+    .hero-copy { display: grid; gap: 16px; justify-items: center; }
+    .bio { max-width: 40rem; font-size: 1.28rem; color: #f0ddd4; }
+    .ticker {
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-size: 1.15rem;
     }
 
-    .affair {
+    .spread {
       display: grid;
-      grid-template-columns: auto minmax(0, 1fr);
-      gap: 32px;
-      align-items: start;
+      grid-template-columns: minmax(260px, 0.86fr) minmax(0, 1.14fr);
+      background: #070605;
+      align-items: stretch;
     }
-    .story {
-      border: 3px solid var(--ink);
-      border-left: 10px solid var(--red);
-      background: var(--slip);
-      box-shadow: 6px 7px 0 var(--ink);
-      padding: 22px 22px 22px 18px;
+    .cut {
+      clip-path: polygon(0 0, 100% 5.7%, 100% 96.2%, 0 100%);
+      background: #070605;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 6vh 16px 5vh;
+    }
+    .cut img {
+      width: auto;
+      max-width: 100%;
+      max-height: 84vh;
+      height: auto;
+      object-fit: contain;
+      object-position: center bottom;
+    }
+    .paper {
+      clip-path: polygon(0 5.7%, 100% 0, 100% 100%, 0 94.3%);
+      background: var(--paper);
+      color: #1a1210;
+      padding: 8vh 42px 7vh;
       display: grid;
-      gap: 0.9rem;
-      font-style: italic;
-      font-size: 1.38rem;
+      align-content: center;
+      gap: 16px;
+    }
+    .paper .kicker { color: var(--red); }
+    .paper h2 { color: var(--red); text-shadow: 3px 3px 0 #1a1210; }
+    .beats { display: grid; gap: 14px; }
+    .beats p {
+      margin: 0;
+      padding-left: 14px;
+      border-left: 4px solid var(--red);
+      font-size: 1.22rem;
       line-height: 1.4;
     }
+    .paper .btn.ghost { box-shadow: 3px 4px 0 #1a1210; }
+    .hero-sheet .btn.ghost,
+    .back .btn.ghost {
+      background: transparent;
+      color: var(--cream);
+      border-color: var(--cream);
+      box-shadow: 3px 4px 0 var(--red);
+    }
+    .howto .lede { color: var(--cream); }
 
-    .strip {
+    .howto {
+      background: var(--red);
+      color: var(--cream);
+      padding: 76px 0;
+    }
+    .howto .kicker { color: var(--cream); }
+    .howto-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+      grid-template-columns: minmax(220px, 0.78fr) minmax(0, 1.22fr);
+      gap: 36px;
+      align-items: start;
     }
-    .shot {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 12px;
-      width: 100%;
-      padding: 0;
-      border: 0;
-      background: none;
-      color: inherit;
-      text-align: left;
-      cursor: zoom-in;
-      font: inherit;
+    .howto-lead { display: grid; gap: 14px; justify-items: start; }
+    .howto .btn {
+      background: var(--cream);
+      color: var(--red-deep);
     }
-    .shot .frame { box-shadow: 5px 6px 0 var(--ink); }
-    .shot-title { font-style: italic; font-weight: 600; font-size: 1.7rem; line-height: 1; }
-    .shot-text { font-style: italic; color: var(--muted); font-size: 1.15rem; line-height: 1.3; }
-    @media (hover: hover) {
-      .shot:hover .frame { box-shadow: 8px 9px 0 var(--red); }
+    .howto .btn.ghost {
+      background: var(--ink);
+      color: var(--cream);
+      box-shadow: 3px 4px 0 #4a0610;
     }
+    .step {
+      display: grid;
+      grid-template-columns: 64px minmax(0, 1fr);
+      gap: 16px;
+      position: relative;
+      padding-bottom: 26px;
+    }
+    .step:last-child { padding-bottom: 0; }
+    .step:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      left: 30px;
+      top: 64px;
+      bottom: 0;
+      width: 4px;
+      background: var(--ink);
+    }
+    .mark {
+      width: 64px;
+      height: 64px;
+      display: grid;
+      place-items: center;
+      background: var(--ink);
+      color: var(--cream);
+      border-radius: 0.45rem;
+      position: relative;
+      z-index: 1;
+    }
+    .mark .ico { width: 30px; height: 30px; }
+    .step p { color: #ffd7de; font-size: 1.12rem; }
+    .step .ca { display: block; margin-top: 6px; color: var(--cream); font-size: 0.98rem; }
 
+    .file { padding: 76px 0; }
+    .chapter-head { display: grid; gap: 8px; margin-bottom: 28px; max-width: 40rem; }
     .dossier {
       display: grid;
-      grid-template-columns: minmax(220px, 360px) minmax(0, 1fr);
+      grid-template-columns: minmax(220px, 340px) minmax(0, 1fr);
       gap: 28px;
       align-items: start;
     }
-    .portrait { display: grid; gap: 12px; justify-items: start; }
-    .portrait .frame { box-shadow: 6px 7px 0 var(--ink); }
-    .aside {
-      font-style: italic;
-      font-size: 1.35rem;
-      max-width: 22rem;
+    .mug { display: grid; gap: 12px; }
+    .mug img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: #e7d3bc;
+      border: 3px solid var(--ink);
+      border-radius: 0.45rem;
+      box-shadow: 6px 8px 0 var(--red);
+    }
+    .mug figcaption {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 1.15rem;
     }
     .receipt {
-      background: var(--slip);
+      background: var(--cream);
+      color: #1a1210;
       border: 3px solid var(--ink);
+      border-radius: 0.45rem;
       box-shadow: 6px 8px 0 var(--ink);
     }
     .receipt-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      background: var(--red);
+      background: var(--ink);
       color: var(--cream);
-      padding: 10px 16px;
-      font-weight: 700;
+      padding: 12px 16px;
+      font-weight: 600;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      font-size: 0.98rem;
     }
     .seal {
-      width: 54px;
-      height: 54px;
+      width: 52px;
+      height: 52px;
       display: grid;
       place-items: center;
-      border: 2px solid var(--cream);
-      color: var(--cream);
-      letter-spacing: 0.08em;
-      font-size: 1.2rem;
-    }
-    .receipt-body { padding: 6px 18px 18px; display: grid; gap: 16px; }
-    .row {
-      display: grid;
-      grid-template-columns: 132px minmax(0, 1fr);
-      gap: 12px;
-      align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px dashed #cbb59a;
-    }
-    .row b {
-      font-weight: 700;
-      font-style: normal;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-size: 0.95rem;
+      border: 2px solid var(--gold);
       color: var(--gold);
+      border-radius: 0.35rem;
+      letter-spacing: 0.08em;
     }
-    .row span:last-child {
-      font-style: italic;
-      font-weight: 600;
-      font-size: 1.5rem;
-    }
-    .chain {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .row.contract { grid-template-columns: 1fr; align-items: start; }
-    .row.contract .ca { font-size: 1.2rem; font-style: italic; }
-
-    .steps {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-    .steps::before {
-      content: "";
-      position: absolute;
-      top: 25px;
-      left: 8%;
-      right: 8%;
-      height: 3px;
-      background: var(--red);
-    }
-    .step { display: grid; gap: 10px; align-content: start; }
-    .step-icon {
-      width: 54px;
-      height: 54px;
-      display: grid;
-      place-items: center;
-      background: var(--slip);
-      border: 3px solid var(--ink);
-      box-shadow: 3px 3px 0 var(--red);
-      position: relative;
-      z-index: 1;
-    }
-    .step-icon .ico { width: 28px; height: 28px; }
-    .step p { font-style: italic; color: var(--muted); font-size: 1.15rem; }
-    .step .ca {
+    .receipt-body { padding: 18px; display: grid; gap: 16px; }
+    .specs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .specs b, .mint b {
       display: block;
-      margin-top: 6px;
-      font-style: normal;
-      color: var(--ink);
-      font-size: 1rem;
+      font-weight: 500;
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #6d564c;
     }
-    .entry-actions { margin-top: 26px; }
+    .specs span {
+      display: block;
+      margin-top: 2px;
+      font-weight: 600;
+      font-size: 1.55rem;
+      text-transform: uppercase;
+    }
+    .specs .hot { color: var(--red); }
+    .chain { display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; }
+    .mint { border-top: 1px dashed #cbb59a; padding-top: 14px; }
+    .mint .ca { font-size: 1.15rem; font-weight: 500; }
+    .receipt .whisper { color: #6d564c; }
+
+    .scenes { padding: 76px 0 84px; }
+    .wall { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .shot {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      padding: 10px 10px 14px;
+      border: 3px solid var(--ink);
+      border-radius: 0.45rem;
+      background: var(--cream);
+      color: #1a1210;
+      box-shadow: 6px 8px 0 var(--ink);
+      text-align: left;
+      cursor: zoom-in;
+      font: inherit;
+    }
+    .shot-photo {
+      background: #12080c;
+      border: 2px solid var(--ink);
+      line-height: 0;
+    }
+    .shot-photo img { display: block; width: 100%; height: auto; object-fit: contain; }
+    .shot-title {
+      font-weight: 600;
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 6px 4px 0;
+    }
+    .shot-text { font-size: 1.05rem; line-height: 1.3; color: #5c463c; padding: 0 4px; }
 
     .back {
-      background: var(--night);
-      color: var(--cream);
-      border-top: 6px solid var(--red);
-      padding: 64px 0 28px;
+      background: var(--ink);
+      border-top: 8px solid var(--red);
+      padding: 72px 0 32px;
     }
-    .back .btn { box-shadow: 4px 5px 0 #000; }
     .back-inner { display: grid; gap: 18px; justify-items: start; }
     .epithet {
-      font-style: italic;
-      font-weight: 600;
-      font-size: clamp(2.4rem, 5.4vw, 4rem);
-      line-height: 0.92;
-      max-width: 9em;
-    }
-    .back .ca-row {
-      background: transparent;
-      border-color: var(--cream);
-      color: var(--cream);
-      width: min(100%, 720px);
-    }
-    .fine {
-      font-style: italic;
-      color: #d9c7b4;
-      font-size: 1.08rem;
-      max-width: 40rem;
+      font-weight: 700;
+      font-size: clamp(2.8rem, 7vw, 5.4rem);
+      line-height: 0.88;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      max-width: 11ch;
+      text-shadow: 4px 5px 0 var(--red);
     }
     .signoff {
-      font-weight: 700;
-      letter-spacing: 0.14em;
+      font-weight: 600;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
+      color: var(--gold);
       font-size: 0.95rem;
-      color: #e6cb96;
     }
+    .foot-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .foot-links a {
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .fine { max-width: 40rem; color: #d9c7b4; font-size: 1.05rem; }
 
     .toast {
       position: fixed;
@@ -532,13 +521,15 @@
       left: 50%;
       bottom: 16px;
       transform: translateX(-50%) translateY(8px);
-      background: var(--slip);
+      background: var(--cream);
       color: var(--ink);
       border: 3px solid var(--ink);
-      box-shadow: 4px 5px 0 var(--red);
+      border-radius: 0.45rem;
+      box-shadow: 3px 4px 0 var(--red);
       padding: 10px 16px;
       font-weight: 600;
-      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
       opacity: 0;
       pointer-events: none;
     }
@@ -546,14 +537,14 @@
 
     #viewer {
       border: 3px solid var(--cream);
-      border-radius: 0;
-      background: var(--night);
+      border-radius: 0.45rem;
+      background: var(--ink);
       color: var(--cream);
       padding: 16px;
       max-width: calc(100vw - 24px);
       box-shadow: 8px 10px 0 var(--red);
     }
-    #viewer::backdrop { background: rgba(16, 10, 8, 0.84); }
+    #viewer::backdrop { background: rgba(8, 4, 6, 0.86); }
     #viewer img {
       display: block;
       width: auto;
@@ -566,61 +557,40 @@
     }
     #viewer-cap {
       margin-top: 12px;
-      font-style: italic;
-      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       text-align: center;
+      font-size: 1.4rem;
     }
-    .viewer-nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 12px;
+    .viewer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 12px; }
+    #viewer .btn.ghost {
+      background: transparent;
+      color: var(--cream);
+      border-color: var(--cream);
+      box-shadow: 3px 4px 0 var(--red);
     }
 
-    .js .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 500ms ease, transform 500ms ease;
-    }
+    .js .reveal { opacity: 0; transform: translateX(2rem); transition: opacity 450ms ease, transform 450ms ease; }
     .js .reveal.in { opacity: 1; transform: none; }
 
-    @media (max-width: 980px) {
-      .affair, .dossier { grid-template-columns: 1fr; }
-      .affair { justify-items: center; }
-      .story, .portrait { width: min(100%, 640px); }
-      .portrait { justify-items: center; margin-inline: auto; }
-      .steps { grid-template-columns: 1fr 1fr; }
-      .steps::before { display: none; }
-    }
     @media (max-width: 860px) {
       .nav-links, .header-x { display: none; }
       .menu-btn { display: inline-flex; }
-    }
-    @media (max-width: 760px) {
-      .strip { grid-template-columns: 1fr; }
-      .chapter { padding: 52px 0; }
+      .spread, .howto-grid, .dossier, .wall { grid-template-columns: 1fr; }
+      .paper { padding: 48px 22px; }
+      .cut { padding: 28px 12px 12px; }
     }
     @media (max-width: 640px) {
-      .steps { grid-template-columns: 1fr; }
+      body { padding-top: 84px; }
+      .specs { grid-template-columns: 1fr; }
       .ca-row { flex-direction: column; align-items: stretch; }
-      .row { grid-template-columns: 1fr; gap: 2px; }
-      .caption-box { padding: 18px; }
-    }
-    @media (max-width: 420px) {
-      .header-inner { gap: 8px; }
-      .brand-symbol { display: none; }
-      .brand img { width: 42px; height: 42px; }
-      .brand-name { font-size: 1.35rem; }
-      .header-actions .btn:not(.icon) { padding: 0 10px; }
-      .header-actions .btn .ico { display: none; }
+      .header-actions .btn:not(.icon) .ico { display: none; }
+      .wrap { width: min(1120px, calc(100% - 28px)); }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation: none !important;
-        transition: none !important;
-      }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
       .js .reveal { opacity: 1; transform: none; }
     }
   </style>
@@ -631,9 +601,9 @@
     <symbol id="i-pump" viewBox="0 0 200 200">
       <path d="M21.8855 184.247C-2.01603 162.076 -3.41853 124.726 18.753 100.824L94.7609 18.8855C116.932 -5.01605 154.282 -6.41855 178.184 15.7529C202.085 37.9244 203.488 75.274 181.316 99.1756L105.308 181.115C83.1367 205.016 45.7871 206.419 21.8855 184.247Z" fill="#fff8ee"/>
       <path fill-rule="evenodd" d="M18.753 100.824C-3.41853 124.726 -2.01603 162.076 21.8855 184.247C45.7871 206.419 83.1367 205.016 105.308 181.115L145.81 137.452L59.2549 57.1621L18.753 100.824ZM40.6908 123.847C41.4209 122.946 41.2828 121.625 40.3824 120.895C39.482 120.165 38.1603 120.303 37.4302 121.203L34.9463 124.267C34.2162 125.167 34.3543 126.489 35.2547 127.219C36.1551 127.949 37.4768 127.811 38.2068 126.91L40.6908 123.847ZM34.5525 135.781C34.7653 134.641 34.014 133.545 32.8745 133.332C31.735 133.12 30.6388 133.871 30.4261 135.01C29.2814 141.142 29.7013 147.239 31.4916 152.718C31.8516 153.82 33.0367 154.421 34.1385 154.061C35.2404 153.701 35.8417 152.516 35.4816 151.414C33.9159 146.623 33.5335 141.24 34.5525 135.781ZM39.6257 160.27C38.8184 159.438 37.4897 159.418 36.6578 160.225C35.8259 161.032 35.8059 162.361 36.6131 163.193L40.0892 166.775C40.8964 167.607 42.2252 167.627 43.0571 166.82C43.889 166.013 43.909 164.684 43.1018 163.852L39.6257 160.27Z" fill="#e6cb96"/>
-      <path fill-rule="evenodd" d="M3.06623 138.152C5.76813 147.035 10.7861 155.343 18.084 162.112C40.0735 182.51 74.4351 181.22 94.8329 159.23L161.563 87.2934C181.961 65.304 180.67 30.9424 158.681 10.5446C153.808 6.02469 148.328 2.56968 142.527 0.168847C155.378 1.14043 168.001 6.30744 178.184 15.7529C202.085 37.9244 203.488 75.274 181.316 99.1756L105.308 181.115C83.1367 205.016 45.7871 206.419 21.8855 184.247C8.6076 171.93 2.27306 154.929 3.06623 138.152Z" fill="#1a1210" fill-opacity="0.35"/>
-      <path fill-rule="evenodd" d="M140.341 130.232L174.776 93.1092C193.598 72.8194 192.407 41.1138 172.117 22.2927C151.827 3.47151 120.122 4.66206 101.301 24.9518L66.8651 62.0744L140.341 130.232ZM181.316 99.1756C203.488 75.274 202.085 37.9244 178.184 15.7529C154.282 -6.41855 116.932 -5.01605 94.7609 18.8855L54.259 62.5478L140.814 142.838L181.316 99.1756Z" fill="#1a1210"/>
-      <path fill-rule="evenodd" d="M25.2927 106.891L60.7988 68.6141L54.259 62.5478L18.753 100.824C-3.41853 124.726 -2.01603 162.076 21.8855 184.247C45.7871 206.419 83.1367 205.016 105.308 181.115L140.814 142.838L134.275 136.771L98.7685 175.048C79.9473 195.338 48.2417 196.528 27.9519 177.707C7.66214 158.886 6.47158 127.181 25.2927 106.891Z" fill="#1a1210"/>
+      <path fill-rule="evenodd" d="M3.06623 138.152C5.76813 147.035 10.7861 155.343 18.084 162.112C40.0735 182.51 74.4351 181.22 94.8329 159.23L161.563 87.2934C181.961 65.304 180.67 30.9424 158.681 10.5446C153.808 6.02469 148.328 2.56968 142.527 0.168847C155.378 1.14043 168.001 6.30744 178.184 15.7529C202.085 37.9244 203.488 75.274 181.316 99.1756L105.308 181.115C83.1367 205.016 45.7871 206.419 21.8855 184.247C8.6076 171.93 2.27306 154.929 3.06623 138.152Z" fill="#090609" fill-opacity="0.35"/>
+      <path fill-rule="evenodd" d="M140.341 130.232L174.776 93.1092C193.598 72.8194 192.407 41.1138 172.117 22.2927C151.827 3.47151 120.122 4.66206 101.301 24.9518L66.8651 62.0744L140.341 130.232ZM181.316 99.1756C203.488 75.274 202.085 37.9244 178.184 15.7529C154.282 -6.41855 116.932 -5.01605 94.7609 18.8855L54.259 62.5478L140.814 142.838L181.316 99.1756Z" fill="#090609"/>
+      <path fill-rule="evenodd" d="M25.2927 106.891L60.7988 68.6141L54.259 62.5478L18.753 100.824C-3.41853 124.726 -2.01603 162.076 21.8855 184.247C45.7871 206.419 83.1367 205.016 105.308 181.115L140.814 142.838L134.275 136.771L98.7685 175.048C79.9473 195.338 48.2417 196.528 27.9519 177.707C7.66214 158.886 6.47158 127.181 25.2927 106.891Z" fill="#090609"/>
     </symbol>
     <symbol id="i-dex" viewBox="0 0 48 48">
       <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="M12.951 10.765c-4.384 7.074.244 15.697-5.366 25.358l4.657-3.436v0l3.196 5.208l3.23-3.12L24 43.492l5.332-8.715l3.23 3.12l3.196-5.21l4.657 3.437c-5.61-9.66-.982-18.284-5.366-25.358"/>
@@ -676,9 +646,9 @@
       </a>
       <nav class="nav-links" aria-label="Story">
         <a href="#affair">Affair</a>
-        <a href="#scenes">Scenes</a>
-        <a href="#file">File</a>
         <a href="#entry">Entry</a>
+        <a href="#file">File</a>
+        <a href="#scenes">Scenes</a>
       </nav>
       <div class="header-actions">
         <a class="btn icon ghost header-x" href="https://x.com/thespyinu" target="_blank" rel="noopener noreferrer" aria-label="Spy Inu on X">
@@ -695,23 +665,23 @@
     </div>
     <nav id="menu" class="menu" aria-label="Story menu">
       <a href="#affair">Affair</a>
-      <a href="#scenes">Scenes</a>
-      <a href="#file">File</a>
       <a href="#entry">Entry</a>
+      <a href="#file">File</a>
+      <a href="#scenes">Scenes</a>
       <a href="https://x.com/thespyinu" target="_blank" rel="noopener noreferrer">X</a>
     </nav>
   </header>
 
   <main>
     <section id="cover">
-      <div class="wrap cover-stack">
-        <figure class="frame">
-          <img src="banner.png" width="1500" height="500" fetchpriority="high" alt="Spy Inu in a dark room before a wall of windows and a lit city">
-        </figure>
-        <div class="caption-box">
+      <div class="hero-plate">
+        <img src="banner.png" width="1500" height="500" fetchpriority="high" alt="Spy Inu in a dark room before a wall of windows and a lit city">
+      </div>
+      <div class="hero-sheet">
+        <div class="wrap hero-copy">
           <p class="kicker">Classified</p>
-          <h1>Spy Inu</h1>
-          <p class="symbol-line">SI · Solana</p>
+          <h1>Spy<br>Inu</h1>
+          <p class="ticker">SI · Solana</p>
           <p class="bio">She never takes the glasses off. Spy Inu is the late-night affair the chip world can't shake: red cheongsam, black trench, secrets in the hallway.</p>
           <div class="actions">
             <a class="btn" data-buy href="https://swap.pump.fun/" target="_blank" rel="noopener noreferrer">
@@ -727,7 +697,7 @@
             </a>
           </div>
           <div class="ca-row">
-            <span class="ca" data-ca>PASTE_CA_HERE</span>
+            <span class="ca" data-ca>A5oX91q9LdyJpzRvLH7xdMPCxw6qMPkLu9hd58tVpump</span>
             <button class="btn" type="button" data-copy>Copy</button>
           </div>
           <p class="whisper">Match every character before you swap.</p>
@@ -735,59 +705,78 @@
       </div>
     </section>
 
-    <section id="affair" class="chapter">
-      <div class="wrap">
-        <div class="chapter-head">
+    <section id="affair">
+      <div class="spread reveal">
+        <div class="cut">
+          <img src="main.png" width="500" height="1492" loading="lazy" alt="Full-length Spy Inu in a red dragon cheongsam, black trench coat, and black heels">
+        </div>
+        <div class="paper">
           <p class="kicker">The affair</p>
           <h2>Red cheongsam, black trench</h2>
-        </div>
-        <div class="affair reveal">
-          <figure class="frame frame-tall">
-            <img src="main.png" width="500" height="1492" loading="lazy" alt="Full-length Spy Inu in a red dragon cheongsam, black trench coat, and black heels">
-          </figure>
-          <div class="story">
+          <div class="beats">
             <p>Spy Inu is a community meme project starring a glamorous Shiba in dark sunglasses, gold hairpins, a red cheongsam and a black trench coat. The story plays on the headlines around NVIDIA CEO Jensen Huang and a rumored affair with an alleged spy.</p>
             <p>From rainy backseats to penthouse windows and half-open hotel doors, she moves like every whisper was written for her. Charming, unreadable, always one step ahead.</p>
             <p>For anyone who likes a scandal with style: the glasses stay on, and the rest is classified.</p>
+          </div>
+          <div class="actions">
+            <a class="btn" data-buy href="https://swap.pump.fun/" target="_blank" rel="noopener noreferrer">
+              <svg class="ico" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-pump" width="100%" height="100%"/></svg>
+              Buy SI
+            </a>
+            <a class="btn icon ghost" href="https://x.com/thespyinu" target="_blank" rel="noopener noreferrer" aria-label="Spy Inu on X">
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x" width="100%" height="100%"/></svg>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="scenes" class="chapter">
-      <div class="wrap">
-        <div class="chapter-head">
-          <p class="kicker">The sightings</p>
-          <h2>Where the night kept her</h2>
-          <p class="lede">Rainy backseats, penthouse windows, and half-open hotel doors.</p>
+    <section id="entry" class="howto">
+      <div class="wrap howto-grid">
+        <div class="howto-lead">
+          <p class="kicker">The entry</p>
+          <h2>How to get in</h2>
+          <p class="lede">Four moves. The contract stays the one on this page.</p>
+          <a class="btn" data-buy href="https://swap.pump.fun/" target="_blank" rel="noopener noreferrer">
+            <svg class="ico" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-pump" width="100%" height="100%"/></svg>
+            Buy on PumpSwap
+          </a>
         </div>
-        <div class="strip">
-          <button class="shot reveal" type="button" aria-label="View the hallway still">
-            <span class="frame">
-              <img src="1.jpg" width="500" height="375" loading="lazy" alt="Spy Inu holding a hotel door open in a lamplit hallway">
-            </span>
-            <span class="shot-title">The hallway</span>
-            <span class="shot-text">A half-open door. The secret does not knock.</span>
-          </button>
-          <button class="shot reveal" type="button" aria-label="View the backseat still">
-            <span class="frame">
-              <img src="2.jpg" width="500" height="375" loading="lazy" alt="Spy Inu in the backseat of a car while rain covers the windows">
-            </span>
-            <span class="shot-title">The backseat</span>
-            <span class="shot-text">Rain on the glass. The city slides past unbothered.</span>
-          </button>
-          <button class="shot reveal" type="button" aria-label="View the penthouse still">
-            <span class="frame">
-              <img src="3.jpg" width="500" height="375" loading="lazy" alt="Spy Inu in a penthouse at night, with the city and a glass of champagne behind her">
-            </span>
-            <span class="shot-title">The penthouse</span>
-            <span class="shot-text">One window, one glass, nothing written down.</span>
-          </button>
+        <div class="spine reveal">
+          <article class="step">
+            <span class="mark"><svg class="ico" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-wallet" width="100%" height="100%"/></svg></span>
+            <div>
+              <h3>Open a wallet</h3>
+              <p>Use a Solana wallet you already control.</p>
+            </div>
+          </article>
+          <article class="step">
+            <span class="mark"><svg class="ico" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-sol" width="100%" height="100%"/></svg></span>
+            <div>
+              <h3>Bring SOL</h3>
+              <p>The swap is paid in SOL, with a little left for the fee.</p>
+            </div>
+          </article>
+          <article class="step">
+            <span class="mark"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy" width="100%" height="100%"/></svg></span>
+            <div>
+              <h3>Match the contract</h3>
+              <p>Copy the address and compare every character.</p>
+              <span class="ca" data-ca>A5oX91q9LdyJpzRvLH7xdMPCxw6qMPkLu9hd58tVpump</span>
+            </div>
+          </article>
+          <article class="step">
+            <span class="mark"><svg class="ico" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-pump" width="100%" height="100%"/></svg></span>
+            <div>
+              <h3>Buy on PumpSwap</h3>
+              <p>The buy button uses that same contract. So does Dexscreener.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="file" class="chapter">
+    <section id="file" class="file">
       <div class="wrap">
         <div class="chapter-head">
           <p class="kicker">The file</p>
@@ -795,30 +784,30 @@
           <p class="lede">Name, symbol, and chain. Buy and Dexscreener stay on the same address.</p>
         </div>
         <div class="dossier reveal">
-          <div class="portrait">
-            <figure class="frame">
-              <img src="logo.png" width="512" height="512" loading="lazy" alt="Portrait of Spy Inu, glasses on, gold hairpins in a dark updo">
-            </figure>
-            <p class="aside">She never takes the glasses off.</p>
-          </div>
+          <figure class="mug">
+            <img src="logo.png" width="512" height="512" loading="lazy" alt="Portrait of Spy Inu, glasses on, gold hairpins in a dark updo">
+            <figcaption>She never takes the glasses off.</figcaption>
+          </figure>
           <article class="receipt">
             <div class="receipt-top">
               <span>Case file</span>
               <span class="seal">SI</span>
             </div>
             <div class="receipt-body">
-              <div class="row"><b>Name</b><span>Spy Inu</span></div>
-              <div class="row"><b>Symbol</b><span>SI</span></div>
-              <div class="row">
-                <b>Chain</b>
-                <span class="chain">
-                  <svg class="ico" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-sol" width="100%" height="100%"/></svg>
-                  Solana
-                </span>
+              <div class="specs">
+                <div><b>Name</b><span>Spy Inu</span></div>
+                <div><b>Symbol</b><span class="hot">SI</span></div>
+                <div>
+                  <b>Chain</b>
+                  <span class="chain">
+                    <svg class="ico" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-sol" width="100%" height="100%"/></svg>
+                    Solana
+                  </span>
+                </div>
               </div>
-              <div class="row contract">
+              <div class="mint">
                 <b>Contract</b>
-                <span class="ca" data-ca>PASTE_CA_HERE</span>
+                <span class="ca" data-ca>A5oX91q9LdyJpzRvLH7xdMPCxw6qMPkLu9hd58tVpump</span>
               </div>
               <div class="actions">
                 <button class="btn" type="button" data-copy>Copy</button>
@@ -831,57 +820,32 @@
             </div>
           </article>
         </div>
-        <noscript><p class="whisper">Turn on JavaScript to paint the contract into the buy and Dexscreener links.</p></noscript>
       </div>
     </section>
 
-    <section id="entry" class="chapter">
+    <section id="scenes" class="scenes">
       <div class="wrap">
         <div class="chapter-head">
-          <p class="kicker">The entry</p>
-          <h2>How to get in</h2>
-          <p class="lede">Four moves. The contract stays the one on this page.</p>
+          <p class="kicker">The sightings</p>
+          <h2>Where the night kept her</h2>
+          <p class="lede">Rainy backseats, penthouse windows, and half-open hotel doors.</p>
         </div>
-        <div class="steps reveal">
-          <article class="step">
-            <span class="step-icon">
-              <svg class="ico" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-wallet" width="100%" height="100%"/></svg>
-            </span>
-            <h3>Open a wallet</h3>
-            <p>Use a Solana wallet you already control.</p>
-          </article>
-          <article class="step">
-            <span class="step-icon">
-              <svg class="ico" viewBox="0 0 512 512" aria-hidden="true"><use href="#i-sol" width="100%" height="100%"/></svg>
-            </span>
-            <h3>Bring SOL</h3>
-            <p>The swap is paid in SOL, with a little left for the fee.</p>
-          </article>
-          <article class="step">
-            <span class="step-icon">
-              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-copy" width="100%" height="100%"/></svg>
-            </span>
-            <h3>Match the contract</h3>
-            <p>Copy the address and compare every character.</p>
-            <span class="ca" data-ca>PASTE_CA_HERE</span>
-          </article>
-          <article class="step">
-            <span class="step-icon">
-              <svg class="ico" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-pump" width="100%" height="100%"/></svg>
-            </span>
-            <h3>Buy on PumpSwap</h3>
-            <p>The buy button uses that same contract. So does Dexscreener.</p>
-          </article>
-        </div>
-        <div class="actions entry-actions">
-          <a class="btn" data-buy href="https://swap.pump.fun/" target="_blank" rel="noopener noreferrer">
-            <svg class="ico" viewBox="0 0 200 200" aria-hidden="true"><use href="#i-pump" width="100%" height="100%"/></svg>
-            Buy on PumpSwap
-          </a>
-          <a class="btn ghost" data-chart href="https://dexscreener.com/solana" target="_blank" rel="noopener noreferrer">
-            <svg class="ico" viewBox="0 0 48 48" aria-hidden="true"><use href="#i-dex" width="100%" height="100%"/></svg>
-            Dexscreener
-          </a>
+        <div class="wall">
+          <button class="shot reveal" type="button" aria-label="View the hallway still">
+            <span class="shot-photo"><img src="1.jpg" width="500" height="375" loading="lazy" alt="Spy Inu holding a hotel door open in a lamplit hallway"></span>
+            <span class="shot-title">The hallway</span>
+            <span class="shot-text">A half-open door. The secret does not knock.</span>
+          </button>
+          <button class="shot reveal" type="button" aria-label="View the backseat still">
+            <span class="shot-photo"><img src="2.jpg" width="500" height="375" loading="lazy" alt="Spy Inu in the backseat of a car while rain covers the windows"></span>
+            <span class="shot-title">The backseat</span>
+            <span class="shot-text">Rain on the glass. The city slides past unbothered.</span>
+          </button>
+          <button class="shot reveal" type="button" aria-label="View the penthouse still">
+            <span class="shot-photo"><img src="3.jpg" width="500" height="375" loading="lazy" alt="Spy Inu in a penthouse at night, with the city and a glass of champagne behind her"></span>
+            <span class="shot-title">The penthouse</span>
+            <span class="shot-text">One window, one glass, nothing written down.</span>
+          </button>
         </div>
       </div>
     </section>
@@ -905,9 +869,16 @@
         </a>
       </div>
       <div class="ca-row">
-        <span class="ca" data-ca>PASTE_CA_HERE</span>
+        <span class="ca" data-ca>A5oX91q9LdyJpzRvLH7xdMPCxw6qMPkLu9hd58tVpump</span>
         <button class="btn" type="button" data-copy>Copy</button>
       </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="#affair">Affair</a>
+        <a href="#entry">Entry</a>
+        <a href="#file">File</a>
+        <a href="#scenes">Scenes</a>
+        <a href="https://x.com/thespyinu" target="_blank" rel="noopener noreferrer">X</a>
+      </nav>
       <p class="fine">Spy Inu is a community meme on Solana. The story is a rumor with a wardrobe. Nothing on this page is financial advice.</p>
     </div>
   </footer>
@@ -918,9 +889,9 @@
     <img id="viewer-img" alt="">
     <p id="viewer-cap"></p>
     <div class="viewer-nav">
-      <button class="btn ghost light" type="button" id="viewer-prev">Previous</button>
-      <button class="btn ghost light" type="button" id="viewer-close">Close</button>
-      <button class="btn ghost light" type="button" id="viewer-next">Next</button>
+      <button class="btn ghost" type="button" id="viewer-prev">Previous</button>
+      <button class="btn ghost" type="button" id="viewer-close">Close</button>
+      <button class="btn ghost" type="button" id="viewer-next">Next</button>
     </div>
   </dialog>
 
@@ -1023,7 +994,7 @@
     });
 
     function spy() {
-      const line = window.scrollY + 110;
+      const line = window.scrollY + 120;
       let current = null;
       seen.forEach(function (section) {
         const top = section.getBoundingClientRect().top + window.scrollY;
